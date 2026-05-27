@@ -383,7 +383,8 @@ export default function HXCoachHomepage() {
           <li><a href="#about">About</a></li>
           <li><a href="#podcast">Podcast</a></li>
         </ul>
-        <button className="nav-cta">Book a Call</button>
+        <<button className="nav-cta" onClick={() => window.open('https://calendly.com/YOUR_LINK', '_blank')}>Book a Call</button>
+
       </nav>
 
       {/* HERO */}
@@ -399,7 +400,7 @@ export default function HXCoachHomepage() {
             Executive-level people strategy. An AI-optimized HR function. A second seat developed or placed to carry it forward. All oriented around one north star: your business results — not HR metrics for their own sake.
           </p>
           <div className="hero-ctas animate-in delay-3">
-            <button className="btn-primary">Book a Discovery Call</button>
+            <button className="btn-primary" onClick={() => window.open('https://calendly.com/YOUR_LINK', '_blank')}>Book a Discovery Call</button>
             <button className="btn-ghost">See the Model</button>
           </div>
           <div className="hero-stats animate-in delay-4">
@@ -807,7 +808,7 @@ export default function HXCoachHomepage() {
           <h2 className="footer-cta-title">Ready to build the people function<br /><em>your business actually needs?</em></h2>
           <p className="footer-cta-sub">Start with a 30-minute discovery call. No pitch — just an honest conversation about where you are, where you're going, and whether this is the right model to get you there.</p>
           <div className="footer-cta-btns">
-            <button className="btn-primary">Book a Discovery Call</button>
+           <button className="btn-primary" onClick={() => window.open('https://calendly.com/YOUR_LINK', '_blank')}>Book a Discovery Call</button>
             <button className="btn-ghost">Explore the Podcast</button>
           </div>
         </div>
