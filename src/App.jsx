@@ -106,14 +106,20 @@ const STYLES = `
   /* TWO PILLARS */
   .pillars { background: var(--navy-mid); }
   .pillars-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 64px; }
-  .pillars-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); }
-  .pillar-card { background: var(--navy-mid); padding: 60px 52px; position: relative; overflow: hidden; transition: background 0.3s; }
+  .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); }
+  .pillar-card { background: var(--navy-mid); padding: 48px 36px; position: relative; overflow: hidden; transition: background 0.3s; }
   .pillar-card:hover { background: #192c42; }
   .pillar-num { font-family: "Cormorant Garamond", serif; font-size: 96px; font-weight: 300; line-height: 1; margin-bottom: 0; position: absolute; top: -10px; right: 32px; color: var(--gold-pale); background: linear-gradient(135deg, rgba(196,151,59,0.25) 0%, transparent 70%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; pointer-events: none; }
   .pillar-tag { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 20px; }
   .pillar-title { font-family: "Cormorant Garamond", serif; font-size: 38px; font-weight: 300; color: var(--warm-white); margin-bottom: 20px; line-height: 1.15; }
   .pillar-title em { font-style: italic; color: var(--gold-light); }
   .pillar-desc { font-size: 15px; line-height: 1.75; color: var(--muted-light); font-weight: 300; margin-bottom: 36px; }
+
+  /* PILLAR COLLAPSE TOGGLE */
+  .pillar-toggle { display: flex; align-items: center; justify-content: space-between; gap: 10px; background: none; border: none; border-top: 1px solid var(--border); color: var(--gold); font-family: Karla, system-ui, sans-serif; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; cursor: pointer; padding: 16px 0 0; width: 100%; margin-top: 20px; transition: color 0.2s; }
+  .pillar-toggle:hover { color: var(--gold-light); }
+  .pillar-toggle span { flex: 1; text-align: left; }
+
   .pillar-features { list-style: none; padding: 0; }
   .pillar-feature { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--muted-light); font-weight: 300; }
   .pillar-feature:last-child { border-bottom: none; }
@@ -121,20 +127,38 @@ const STYLES = `
   .pillar-ai-badge { display: inline-flex; align-items: center; gap: 8px; margin-top: 28px; padding: 8px 16px; border: 1px solid var(--border); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
   .pillar-ai-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
 
-  /* HUMAN SANDWICH */
-  .sandwich { background: var(--navy); }
-  .sandwich-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center; }
-  .sandwich-diagram { position: relative; }
-  .sandwich-layer { padding: 28px 32px; position: relative; transition: transform 0.3s; }
-  .sandwich-layer:hover { transform: translateX(8px); }
-  .sandwich-layer.human-layer { background: rgba(196,151,59,0.08); border: 1px solid var(--border); border-left: 3px solid var(--gold); }
-  .sandwich-layer.ai-layer { background: var(--navy-mid); border: 1px solid rgba(42,107,82,0.4); border-left: 3px solid #3fb87a; margin: 2px 24px; }
-  .sandwich-layer-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
-  .sandwich-layer.human-layer .sandwich-layer-label { color: var(--gold); }
-  .sandwich-layer.ai-layer .sandwich-layer-label { color: #3fb87a; }
-  .sandwich-layer-title { font-family: "Cormorant Garamond", serif; font-size: 22px; color: var(--cream); margin-bottom: 8px; }
-  .sandwich-layer-desc { font-size: 13px; color: var(--muted-light); line-height: 1.6; font-weight: 300; }
-  .sandwich-connector { text-align: center; padding: 8px 0; color: var(--muted); font-size: 18px; }
+
+  /* THE HX TEAM */
+  .team-callout { background: var(--navy-light); border: 1px solid var(--border); padding: 36px; margin: 32px 0 36px; }
+  .team-callout-label { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 14px; }
+  .team-callout-headline { font-family: "Cormorant Garamond", serif; font-size: 26px; font-weight: 300; color: var(--cream); margin-bottom: 10px; line-height: 1.2; }
+  .team-callout-sub { font-size: 14px; color: var(--muted-light); line-height: 1.65; font-weight: 300; margin-bottom: 24px; }
+  .team-role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); }
+  .team-role-card { background: var(--navy-mid); padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start; transition: background 0.2s; }
+  .team-role-card:hover { background: #243d5c; }
+  .team-role-title { font-size: 13px; color: var(--cream); font-weight: 500; margin-bottom: 3px; letter-spacing: 0.01em; }
+  .team-role-desc { font-size: 12px; color: var(--muted); line-height: 1.5; font-weight: 300; }
+
+  /* THE HX FRAME™ */
+  .hx-frame-section { background: var(--navy); }
+  .hxf-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center; }
+  .hxf-diagram { position: relative; border: 1.5px solid var(--gold); }
+  .hxf-nameplate { position: absolute; top: -13px; left: 28px; background: var(--navy); padding: 2px 14px; font-family: "Cormorant Garamond", serif; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); font-weight: 600; white-space: nowrap; }
+  .hxf-edge { padding: 28px 30px; display: flex; align-items: flex-start; gap: 16px; transition: background 0.25s; }
+  .hxf-edge.top { border-bottom: 1px solid var(--border); }
+  .hxf-edge.bottom { border-top: 1px solid var(--border); }
+  .hxf-edge:hover { background: rgba(196,151,59,0.05); }
+  .hxf-field { padding: 28px 30px; background: var(--navy-mid); display: flex; align-items: flex-start; gap: 16px; transition: background 0.25s; }
+  .hxf-field:hover { background: #1c3149; }
+  .hxf-edge-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700; margin-bottom: 6px; }
+  .hxf-edge .hxf-edge-label { color: var(--gold); }
+  .hxf-field .hxf-edge-label { color: #3fb87a; }
+  .hxf-edge-title { font-family: "Cormorant Garamond", serif; font-size: 20px; color: var(--cream); margin-bottom: 8px; line-height: 1.2; }
+  .hxf-edge-desc { font-size: 13px; color: var(--muted-light); line-height: 1.65; font-weight: 300; }
+  .hxf-payoff { margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border); }
+  .hxf-payoff-label { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 12px; }
+  .hxf-payoff-text { font-family: "Cormorant Garamond", serif; font-size: 26px; font-weight: 300; color: var(--cream); line-height: 1.35; }
+  .hxf-payoff-text em { font-style: italic; color: var(--gold-light); }
 
   /* JOURNEY / USE CASE */
   .journey { background: var(--navy-light); }
@@ -244,6 +268,33 @@ const STYLES = `
   .footer-links a:hover { color: var(--gold); }
   .footer-copy { font-size: 12px; color: var(--muted); }
 
+
+
+  /* INFRASTRUCTURE */
+  .infra { background: var(--navy); }
+  .infra-layout { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: start; }
+  .infra-stack { display: flex; flex-direction: column; gap: 2px; }
+  .infra-card { background: var(--navy-mid); padding: 28px 32px; border-left: 3px solid transparent; transition: border-color 0.3s, background 0.3s; }
+  .infra-card:hover { background: var(--navy-light); border-left-color: var(--gold); }
+  .infra-card-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 12px; }
+  .infra-card-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 4px; }
+  .infra-card-title { font-family: "Cormorant Garamond", serif; font-size: 20px; color: var(--cream); font-weight: 400; line-height: 1.2; }
+  .infra-card-text { font-size: 14px; line-height: 1.7; color: var(--muted-light); font-weight: 300; }
+  .infra-tools { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+  .tool-badge { border: 1px solid var(--border); padding: 4px 12px; font-size: 10px; color: var(--muted-light); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; }
+  .tool-badge.primary { border-color: var(--gold); color: var(--gold); font-weight: 700; }
+  .infra-sub-note { margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border); }
+  .infra-sub-note-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 10px; }
+  .infra-sub-note-text { font-family: "Cormorant Garamond", serif; font-size: 20px; font-style: italic; color: var(--cream); line-height: 1.45; font-weight: 300; }
+
+  /* BRAND ICONS */
+  .icon-block { margin-bottom: 24px; }
+  .pillar-icon-block { margin-bottom: 22px; }
+  .outcome-icon-block { margin-bottom: 18px; }
+  .step-icon-svg { display: flex; align-items: center; justify-content: center; margin-top: 4px; }
+  .why-icon-block { margin-bottom: 22px; }
+  .about-hx-mark { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
+
   /* ANIMATIONS */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
   .animate-in { animation: fadeUp 0.8s ease forwards; }
@@ -265,11 +316,13 @@ const STYLES = `
     .philosophy-inner { grid-template-columns: 1fr; }
     .pillars-header { grid-template-columns: 1fr; gap: 24px; }
     .pillars-grid { grid-template-columns: 1fr; }
-    .sandwich-layout { grid-template-columns: 1fr; gap: 48px; }
+    .hxf-layout { grid-template-columns: 1fr; gap: 48px; }
     .journey-intro { grid-template-columns: 1fr; gap: 24px; }
     .journey-stages { grid-template-columns: 1fr; }
     .journey-panel { grid-template-columns: 1fr; }
+    .infra-layout { grid-template-columns: 1fr; gap: 48px; }
     .outcomes-grid { grid-template-columns: 1fr; }
+    .team-role-grid { grid-template-columns: 1fr; }
     .equation { flex-direction: column; gap: 24px; }
     .eq-item { border-right: none !important; border-bottom: 1px solid var(--border); padding-bottom: 24px; }
     .process-steps { grid-template-columns: 1fr 1fr; gap: 32px; }
@@ -357,9 +410,117 @@ const STAGES = [
   }
 ];
 
+// ─── BRAND ICONS ─────────────────────────────────────────────────────────────
+const _S = { fill: "none", strokeLinecap: "round", strokeLinejoin: "round" };
+const ICON = {
+  talentEngine: (c="#C4973B", sw=1.5) => (
+    <g stroke={c} strokeWidth={sw} fill="none" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M8,40 C8,24 40,24 40,8"/>
+      <circle cx="8"  cy="40" r="3"   fill={c} stroke="none"/>
+      <circle cx="24" cy="26" r="3"   fill={c} stroke="none"/>
+      <circle cx="40" cy="8"  r="3"   fill={c} stroke="none"/>
+      <path d="M34,12 L40,6 L44,12"/>
+    </g>
+  ),
+  benefits: (c="#C4973B", sw=1.5) => (
+    <g stroke={c} strokeWidth={sw} fill="none" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M24,42 C10,34 8,12 24,6 C40,12 38,34 24,42 Z"/>
+      <line x1="24" y1="42" x2="24" y2="6"/>
+      <line x1="24" y1="20" x2="16" y2="15"/>
+      <line x1="24" y1="20" x2="32" y2="15"/>
+      <line x1="24" y1="29" x2="17" y2="25"/>
+      <line x1="24" y1="29" x2="31" y2="25"/>
+    </g>
+  ),
+  strategy: (c="#C4973B", sw=1.5) => (
+    <g strokeWidth={sw} fill="none" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M24,4 L31,24 L24,44 L17,24 Z" stroke={c}/>
+      <path d="M24,4 L31,24 L17,24 Z" fill={c} fillOpacity="0.22" stroke="none"/>
+      <circle cx="24" cy="24" r="3" fill={c} stroke="none"/>
+      <line x1="24" y1="4"  x2="24" y2="9"  stroke={c}/>
+      <line x1="24" y1="39" x2="24" y2="44" stroke={c}/>
+      <line x1="4"  y1="24" x2="9"  y2="24" stroke={c}/>
+      <line x1="39" y1="24" x2="44" y2="24" stroke={c}/>
+    </g>
+  ),
+  aiFunction: (c="#C4973B", sw=1.5) => (
+    <g stroke={c} strokeWidth={sw} fill="none" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="24" cy="7"  r="3.5"/>
+      <circle cx="9"  cy="37" r="3.5"/>
+      <circle cx="39" cy="37" r="3.5"/>
+      <circle cx="24" cy="24" r="6"/>
+      <line x1="24" y1="18"   x2="24" y2="10.5"/>
+      <line x1="19" y1="27.5" x2="12" y2="33.5"/>
+      <line x1="29" y1="27.5" x2="36" y2="33.5"/>
+      <circle cx="24" cy="24" r="2.5" fill={c} stroke="none"/>
+    </g>
+  ),
+  human: (c="#C4973B", sw=1.5) => (
+    <g stroke={c} strokeWidth={sw} fill="none" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="24" cy="14" r="7"/>
+      <path d="M10,42 C10,30 38,30 38,42"/>
+      <path d="M24,24 L27,27.5 L24,31 L21,27.5 Z" fill={c} stroke="none"/>
+    </g>
+  ),
+  secondSeat: (c="#C4973B", sw=1.5) => (
+    <g stroke={c} strokeWidth={sw} fill="none" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="13" cy="37" r="5"/>
+      <circle cx="37" cy="11" r="5"/>
+      <path d="M16,33 Q26,22 34,14"/>
+      <path d="M32,7 L37,4 L40,9"/>
+    </g>
+  ),
+  evaluate: (c="#C4973B", sw=1.5) => (
+    <g stroke={c} strokeWidth={sw} fill="none" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="20" cy="20" r="13"/>
+      <line x1="29.5" y1="29.5" x2="43" y2="43"/>
+      <line x1="13" y1="20" x2="27" y2="20"/>
+      <line x1="20" y1="13" x2="20" y2="27"/>
+    </g>
+  ),
+  results: (c="#C4973B", sw=1.5) => (
+    <g stroke={c} strokeWidth={sw} fill="none" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="5" y1="42" x2="43" y2="42"/>
+      <rect x="7"  y="33" width="8" height="9"/>
+      <rect x="20" y="23" width="8" height="19"/>
+      <rect x="33" y="13" width="8" height="29"/>
+      <path d="M11,33 L24,23 L37,13"/>
+      <circle cx="37" cy="11" r="2.5" fill={c} stroke="none"/>
+    </g>
+  ),
+  scale: (c="#C4973B", sw=1.5) => (
+    <g stroke={c} strokeWidth={sw} fill="none" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M6,44 L18,44 L18,32 L30,32 L30,20 L42,20 L42,8"/>
+      <path d="M38,11 L42,7 L44,12"/>
+      <circle cx="18" cy="44" r="1.5" fill={c} stroke="none"/>
+      <circle cx="30" cy="32" r="1.5" fill={c} stroke="none"/>
+      <circle cx="42" cy="20" r="1.5" fill={c} stroke="none"/>
+    </g>
+  ),
+  hxMark: (c="#C4973B", sw=1.5) => (
+    <g stroke={c} strokeWidth={sw} fill="none" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="5"  y1="8"  x2="5"  y2="40"/>
+      <line x1="19" y1="8"  x2="19" y2="40"/>
+      <line x1="5"  y1="24" x2="19" y2="24"/>
+      <line x1="27" y1="8"  x2="43" y2="40"/>
+      <line x1="43" y1="8"  x2="27" y2="40"/>
+      <circle cx="22" cy="24" r="2.5" fill={c} stroke="none"/>
+    </g>
+  ),
+};
+// Convenience wrapper
+const BIcon = ({ type, size=48, color="#C4973B", sw=1.5 }) => (
+  <svg width={size} height={size} viewBox="0 0 48 48" style={{display:"block",flexShrink:0}}>
+    {ICON[type](color, sw)}
+  </svg>
+);
+
+
 export default function HXCoachHomepage() {
   const [scrolled, setScrolled] = useState(false);
   const [activeStage, setActiveStage] = useState(0);
+  const [expandedPillars, setExpandedPillars] = useState([false, false, false]);
+  const togglePillar = (i) => setExpandedPillars(p => p.map((v, idx) => idx === i ? !v : v));
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -383,8 +544,7 @@ export default function HXCoachHomepage() {
           <li><a href="#about">About</a></li>
           <li><a href="#podcast">Podcast</a></li>
         </ul>
-        <<button className="nav-cta" onClick={() => window.open('https://calendly.com/YOUR_LINK', '_blank')}>Book a Call</button>
-
+        <button className="nav-cta">Book a Call</button>
       </nav>
 
       {/* HERO */}
@@ -392,7 +552,7 @@ export default function HXCoachHomepage() {
         <div className="hero-bg" />
         <div className="hero-grid" />
         <div className="hero-left">
-          <div className="hero-eyebrow animate-in">CPO-Level Strategy · AI + Tech Integration · Built-to-Last People Functions</div>
+          <div className="hero-eyebrow animate-in">CPO-Level Strategy · AI + Tech Integration · Scalable & Optimized People Functions</div>
           <h1 className="hero-headline animate-in delay-1">
             You don't need<br />a chief in the seat.<br /><em>You need a partner</em><br />who builds you one.
           </h1>
@@ -400,7 +560,7 @@ export default function HXCoachHomepage() {
             Executive-level people strategy. An AI-optimized HR function. A second seat developed or placed to carry it forward. All oriented around one north star: your business results — not HR metrics for their own sake.
           </p>
           <div className="hero-ctas animate-in delay-3">
-            <button className="btn-primary" onClick={() => window.open('https://calendly.com/YOUR_LINK', '_blank')}>Book a Discovery Call</button>
+            <button className="btn-primary">Book a Discovery Call</button>
             <button className="btn-ghost">See the Model</button>
           </div>
           <div className="hero-stats animate-in delay-4">
@@ -434,10 +594,10 @@ export default function HXCoachHomepage() {
           </div>
           <div className="philosophy-item">
             <div className="philosophy-label">Better Results</div>
-            <div className="philosophy-text">AI-optimized operations, CPO-level strategy, and an elevated human experience — all aligned to your business goals.</div>
+            <div className="philosophy-text">The HX Frame™ across all three pillars — AI-optimized in the field, human-designed at the edges, every outcome tied to your business goals.</div>
           </div>
           <div className="philosophy-item">
-            <div className="philosophy-label">Built to Last</div>
+            <div className="philosophy-label">Scalable & Optimized</div>
             <div className="philosophy-text">An internal team architected to scale, with the second seat developed or placed to carry it forward without you.</div>
           </div>
         </div>
@@ -454,24 +614,27 @@ export default function HXCoachHomepage() {
             Most organizations face a version of the same choice: hire a full-time Chief People Officer they can&apos;t quite afford at their stage, or operate without the strategic architecture their business actually needs. There&apos;s a third option — and it delivers better results than either.
           </p>
           <p className="vp-prose-text" style={{ marginTop: 28, opacity: 0.75, fontSize: "clamp(17px, 1.8vw, 22px)" }}>
-            Stacie embeds at the executive level — sitting in or adjacent to the Chief seat — bringing CPO-level strategy, a fully integrated AI and technology layer across your people function, and a coaching model built around the HR leader who will carry this forward. Or a plan to find and develop that person as part of the engagement itself. The north star is never HR metrics for their own sake. It&apos;s your business results.
+            The HX Team deploys at the executive level — with Stacie in or adjacent to the Chief seat and specialists covering AI workflow, tech implementation, change management, and communication strategy. Together they bring CPO-level strategy, a fully integrated AI and technology layer, and a coaching model built around the HR leader who will carry the function forward. The north star is never HR metrics for their own sake. It&apos;s your business results.
           </p>
         </div>
         <div className="outcomes-grid">
           <div className="outcome-card">
             <div className="outcome-num">01</div>
+            <div className="outcome-icon-block"><BIcon type="strategy" size={48} color="var(--gold)" sw={1.4}/></div>
             <div className="outcome-tag">What You Get</div>
             <h3 className="outcome-title">The <em>Strategy</em></h3>
             <p className="outcome-desc">CPO-level thinking applied to your actual business stage and growth trajectory — not HR best practices for their own sake. Every decision oriented to a north star defined by where you&apos;re going.</p>
             <ul className="outcome-list">
               <li>Org design and talent architecture built for your next stage, not your current one</li>
               <li>Total rewards and compensation philosophy aligned to how you need to compete for talent</li>
-              <li>Culture strategy and workforce experience designed around your actual business model</li>
-              <li>Full PM visibility — milestones, owner accountability, progress your board can see</li>
+              <li>Change management methodology embedded from day one — stakeholder mapping, adoption planning, phased rollout</li>
+              <li>Multi-channel internal communication strategy built into every phase of the engagement</li>
+              <li>Asana-based PM tracking — KPI dashboards, milestones, owner accountability, and board-ready progress reporting</li>
             </ul>
           </div>
           <div className="outcome-card">
             <div className="outcome-num">02</div>
+            <div className="outcome-icon-block"><BIcon type="aiFunction" size={48} color="var(--gold)" sw={1.4}/></div>
             <div className="outcome-tag">What You Get</div>
             <h3 className="outcome-title">The <em>Function</em></h3>
             <p className="outcome-desc">An AI-optimized, tech-integrated HR operation that runs lean, automates what should be automated, and elevates the workforce experience at scale — without adding headcount.</p>
@@ -480,10 +643,12 @@ export default function HXCoachHomepage() {
               <li>Agents and automation handling the documented and repeatable, 24/7</li>
               <li>Human intervention mapped precisely to moments that require judgment and empathy</li>
               <li>Benefits and talent programs personalized at scale — the right experience at the right moment</li>
+              <li>Live KPI data outputs surfaced through the PM layer — the people strategy is measured, not assumed</li>
             </ul>
           </div>
           <div className="outcome-card">
             <div className="outcome-num">03</div>
+            <div className="outcome-icon-block"><BIcon type="secondSeat" size={48} color="var(--gold)" sw={1.4}/></div>
             <div className="outcome-tag">What You Get</div>
             <h3 className="outcome-title">The <em>Second Seat</em></h3>
             <p className="outcome-desc">The engagement is built from day one around developing your existing HR leader — or identifying and placing the person who will carry the function forward. Capability transfers. The function doesn&apos;t backslide.</p>
@@ -518,77 +683,132 @@ export default function HXCoachHomepage() {
       <section className="pillars" id="pillars">
         <div className="pillars-header">
           <div>
-            <div className="section-eyebrow">Two Pillars</div>
+            <div className="section-eyebrow">Three Pillars</div>
             <h2 className="section-title">Where the AI-plus-human<br /><em>equation plays out.</em></h2>
           </div>
           <p className="section-sub" style={{ paddingBottom: 8 }}>
-            Every engagement is anchored in the two areas where the gap between organizations doing this well — and those waiting — is growing every quarter.
+            Every engagement is built around three interconnected pillars — the areas where the gap between organizations doing this well and those still waiting is compounding every quarter.
           </p>
         </div>
         <div className="pillars-grid">
           <div className="pillar-card">
             <div className="pillar-num">01</div>
+            <div className="pillar-icon-block"><BIcon type="talentEngine" size={52} color="var(--gold)" sw={1.4}/></div>
             <div className="pillar-tag">Pillar One</div>
             <h3 className="pillar-title">The Talent Engine<br /><em>Attract. Select. Retain.</em></h3>
             <p className="pillar-desc">
               Most organizations are still running talent acquisition on manual processes, gut instinct, and agency dependency. The organizations winning now use AI-powered sourcing, structured selection technology, and predictive retention analytics — with humans at the design and judgment ends of every decision.
             </p>
+            <button className="pillar-toggle" onClick={() => togglePillar(0)}>
+              <span>{expandedPillars[0] ? 'Close' : '5 Features'}</span>
+              <svg width="13" height="13" viewBox="0 0 13 13" style={{transition:'transform 0.35s',transform:expandedPillars[0]?'rotate(180deg)':'none',flexShrink:0}}><path d="M1.5 4.5 L6.5 9.5 L11.5 4.5" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </button>
+            <div style={{overflow:'hidden',maxHeight:expandedPillars[0]?'1400px':'0',opacity:expandedPillars[0]?1:0,transition:'max-height 0.55s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease',marginTop:expandedPillars[0]?'20px':'0'}}>
             <ul className="pillar-features">
-              <li className="pillar-feature">AI-powered sourcing that surfaces candidates human search misses — and flags what it gets wrong</li>
-              <li className="pillar-feature">Structured selection frameworks that reduce bias variance without removing human judgment</li>
-              <li className="pillar-feature">Retention analytics that identify disengagement signals before they become resignations</li>
-              <li className="pillar-feature">Talent brand and candidate experience built with taste and design intent — not AI-generated slop</li>
+              <li className="pillar-feature">AI-powered sourcing that builds your internal talent database as a business asset — then deploys automated workflows to activate and outreach to those pipelines continuously, reducing dependency on agencies and job boards</li>
+              <li className="pillar-feature">Structured selection frameworks that reduce bias variance without removing human judgment and decision-making — the hire stays yours</li>
+              <li className="pillar-feature">Predictive retention analytics that identify disengagement signals before they become resignations — so you act on the data instead of reacting to the departure</li>
+              <li className="pillar-feature">Talent brand and candidate experience designed around your organization's actual identity — not AI-generated slop — with agents handling the repeatable and human intervention placed exactly where it matters most</li>
+              <li className="pillar-feature">Multi-channel talent communication strategy — employer brand distributed across every channel where your candidates actually are, continuously building your database and expanding your reach</li>
             </ul>
             <div className="pillar-ai-badge"><div className="pillar-ai-dot" />AI Sourcing · Predictive Analytics · ATS Optimization · Retention Modeling</div>
+            </div>
           </div>
           <div className="pillar-card">
             <div className="pillar-num">02</div>
+            <div className="pillar-icon-block"><BIcon type="benefits" size={52} color="var(--gold)" sw={1.4}/></div>
             <div className="pillar-tag">Pillar Two</div>
             <h3 className="pillar-title">Benefits & Wellbeing<br /><em>by Design.</em></h3>
             <p className="pillar-desc">
-              Fewer than 1 in 4 employees feel confident they understand their benefits package. The organizations changing that are building benefits as a living system — using AI navigation and personalization at scale, freeing HR professionals to do the design work that actually matters.
+              Fewer than 1 in 4 employees feel confident they understand their benefits package. The organizations changing that are building benefits as a living system — using AI navigation, healthcare consumerism strategy, and whole-person health design to reduce cost, improve outcomes, and deliver a personalized experience for every member.
             </p>
+            <button className="pillar-toggle" onClick={() => togglePillar(1)}>
+              <span>{expandedPillars[1] ? 'Close' : '7 Features'}</span>
+              <svg width="13" height="13" viewBox="0 0 13 13" style={{transition:'transform 0.35s',transform:expandedPillars[1]?'rotate(180deg)':'none',flexShrink:0}}><path d="M1.5 4.5 L6.5 9.5 L11.5 4.5" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </button>
+            <div style={{overflow:'hidden',maxHeight:expandedPillars[1]?'1400px':'0',opacity:expandedPillars[1]?1:0,transition:'max-height 0.55s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease',marginTop:expandedPillars[1]?'20px':'0'}}>
             <ul className="pillar-features">
-              <li className="pillar-feature">AI navigation tools that answer employee questions at 11pm — privately, accurately, without judgment</li>
-              <li className="pillar-feature">Personalization at scale: the right benefit information for the right employee at the right moment</li>
-              <li className="pillar-feature">Self-funded plan design and population health strategy that measurably reduces cost</li>
-              <li className="pillar-feature">Human experts available for high-stakes moments — serious diagnoses, emergencies, complex scenarios</li>
+              <li className="pillar-feature">AI navigation tools that answer employee questions at 11pm or 2am — privately, accurately, without judgment, and without involving anyone on the team until the employee is ready</li>
+              <li className="pillar-feature">Personalization at scale: the right benefit information for the right employee at the right moment — without scaling headcount, outsourcing critical touchpoints, or sacrificing the quality of the interaction</li>
+              <li className="pillar-feature">Self-funded plan design and population health strategy that measurably reduces cost — not by cutting benefits, but by designing them with data, intentionality, and long-term utilization in mind</li>
+              <li className="pillar-feature">Healthcare consumerism strategy that increases navigation tool utilization, steers members toward high-value in-network care, and puts cost and quality information in their hands before they make decisions that drive unnecessary out-of-network spend</li>
+              <li className="pillar-feature">Whole-person health architecture targeting the highest-dollar claim drivers — women's health, men's health, and early intervention of chronic disease states — integrated with wellness programming that elevates engagement and connection while measurably lifting the health of all members: employees and their families</li>
+              <li className="pillar-feature">Human experts available for high-stakes moments — serious diagnoses, emergencies, and complex life scenarios that require more than information, they require a person who understands the full picture</li>
+              <li className="pillar-feature">Multi-channel benefits communication plan that drives actual utilization — not just awareness that the program exists, but active engagement with the benefits your employees are already paying for</li>
             </ul>
-            <div className="pillar-ai-badge"><div className="pillar-ai-dot" />AI Navigation · Self-Funded Design · Population Health · Personalization</div>
+            <div className="pillar-ai-badge"><div className="pillar-ai-dot" />AI Navigation · Self-Funded Design · Whole-Person Health · Population Health · Consumerism Strategy</div>
+            </div>
+          </div>
+
+          <div className="pillar-card">
+            <div className="pillar-num">03</div>
+            <div className="pillar-icon-block"><BIcon type="secondSeat" size={52} color="var(--gold)" sw={1.4}/></div>
+            <div className="pillar-tag">Pillar Three</div>
+            <h3 className="pillar-title">The Leadership<br /><em>Pipeline.</em></h3>
+            <p className="pillar-desc">
+              Most organizations hire great people then under-invest in what happens next. The Leadership Pipeline closes that gap — using micro-learning, AI-driven succession analytics, and distributed development infrastructure to build the leaders your next stage requires from the talent you already have.
+            </p>
+            <button className="pillar-toggle" onClick={() => togglePillar(2)}>
+              <span>{expandedPillars[2] ? 'Close' : '6 Features'}</span>
+              <svg width="13" height="13" viewBox="0 0 13 13" style={{transition:'transform 0.35s',transform:expandedPillars[2]?'rotate(180deg)':'none',flexShrink:0}}><path d="M1.5 4.5 L6.5 9.5 L11.5 4.5" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </button>
+            <div style={{overflow:'hidden',maxHeight:expandedPillars[2]?'1400px':'0',opacity:expandedPillars[2]?1:0,transition:'max-height 0.55s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease',marginTop:expandedPillars[2]?'20px':'0'}}>
+            <ul className="pillar-features">
+              <li className="pillar-feature">Succession planning powered by AI readiness scoring — bench strength visibility, ready-now vs. ready-soon frameworks, and leadership continuity built before the vacancy forces your hand</li>
+              <li className="pillar-feature">Micro-learning for front-line and middle managers — brief, mobile-first, workflow-embedded development built for distributed teams and the managers who can&apos;t afford to stay stuck but don&apos;t have time for seminars</li>
+              <li className="pillar-feature">Distributed workforce operating consistency — standardized culture, processes, and leadership behaviors across every location without sacrificing the local autonomy that makes teams effective</li>
+              <li className="pillar-feature">Skills-based internal mobility — connecting development directly to advancement so your best people see a clear path forward before they start looking elsewhere</li>
+              <li className="pillar-feature">Change management coaching at the leader level — equipping managers to carry change to their teams rather than becoming the bottleneck standing in front of it</li>
+              <li className="pillar-feature">AI-powered learning ecosystems that continuously align development with role requirements, skill gaps, and business priorities — adapting in real time as your organization evolves</li>
+            </ul>
+            <div className="pillar-ai-badge"><div className="pillar-ai-dot" />Succession Analytics · Micro-Learning · Skills Intelligence · Change Coaching</div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* HUMAN SANDWICH */}
-      <section className="sandwich">
-        <div className="sandwich-layout">
+      {/* THE HX FRAME™ */}
+      <section className="hx-frame-section">
+        <div className="hxf-layout">
           <div>
-            <div className="section-eyebrow">The Model</div>
-            <h2 className="section-title">The human sandwich.<br /><em>You are the bread.</em></h2>
-            <p className="section-sub" style={{ marginBottom: 32 }}>
-              AI does the middle of the work — the sourcing, the screening, the scheduling, the FAQs, the workflow. Humans are on both ends: defining what great looks like at the start, and making the calls that matter at the finish. That is a genuinely better job — and a genuinely better experience for the workforce.
+            <div className="section-eyebrow">Proprietary Model</div>
+            <h2 className="section-title">The <em>HX Frame™</em></h2>
+            <p className="section-sub" style={{ marginBottom: 28 }}>
+              A frame defines everything inside it. Humans establish the blueprint at the start — documenting the workflows, processes, and decision criteria that govern how AI operates. The field between those edges handles everything tactical, repetitive, and verifiable across the full workforce lifecycle. And humans apply judgment at the finish to make the decisions that actually matter.
             </p>
             <p className="section-sub">
-              The HR professionals who engage with this model become unreasonably effective. The ones who don't are running out of runway.
+              The HR professionals who operate inside this model become unreasonably effective — doing less routine work and more of the work that actually requires a person. That is a better job. And a better human experience for the workforce they serve.
             </p>
+            <div className="hxf-payoff">
+              <div className="hxf-payoff-label">The Principle</div>
+              <div className="hxf-payoff-text">You are the frame.<br /><em>Every decision inside it is yours.</em></div>
+            </div>
           </div>
-          <div className="sandwich-diagram">
-            <div className="sandwich-layer human-layer">
-              <div className="sandwich-layer-label">Human — Design &amp; Intent</div>
-              <div className="sandwich-layer-title">Define what "great" looks like</div>
-              <div className="sandwich-layer-desc">Set strategy, design the program, decide what the AI is optimizing for — and what it isn't.</div>
+          <div className="hxf-diagram">
+            <div className="hxf-nameplate">The HX Frame™</div>
+            <div className="hxf-edge top">
+              <BIcon type="human" size={28} color="var(--gold)" sw={1.5}/>
+              <div>
+                <div className="hxf-edge-label">The Frame — Human Design Intent</div>
+                <div className="hxf-edge-title">Define the blueprint. Document how it operates.</div>
+                <div className="hxf-edge-desc">Set strategy, establish design intent, and define — then verify and document — the workflows, processes, and decision criteria the AI will operate within. The frame is both the vision and the rulebook. What gets documented here determines everything the field can execute.</div>
+              </div>
             </div>
-            <div className="sandwich-connector">↕</div>
-            <div className="sandwich-layer ai-layer">
-              <div className="sandwich-layer-label">AI + Automation — The Middle</div>
-              <div className="sandwich-layer-title">Source, screen, schedule, answer, navigate, track</div>
-              <div className="sandwich-layer-desc">Handle everything that can be documented, automated, or systematized — faster, cheaper, at scale, 24/7.</div>
+            <div className="hxf-field">
+              <BIcon type="aiFunction" size={28} color="#3fb87a" sw={1.5}/>
+              <div>
+                <div className="hxf-edge-label" style={{color:"#3fb87a"}}>The Field — AI + Automation</div>
+                <div className="hxf-edge-title">Every tactical, repetitive, and verifiable function — executed at scale.</div>
+                <div className="hxf-edge-desc">Sourcing, screening, scheduling, candidate outreach, onboarding workflows, internal mobility matching, benefits navigation, leave requests, policy questions, wellness check-ins, learning delivery, engagement surveys, performance data collection, and agent-handled communication across the full attract-develop-retain lifecycle. If it can be documented, resourced, verified, or systematized — an agent or automation executes it faster, cheaper, more accurately, and without burning human bandwidth on what a system can own.</div>
+              </div>
             </div>
-            <div className="sandwich-connector">↕</div>
-            <div className="sandwich-layer human-layer">
-              <div className="sandwich-layer-label">Human — Judgment &amp; Action</div>
-              <div className="sandwich-layer-title">Make the calls that matter</div>
-              <div className="sandwich-layer-desc">Evaluate what the AI surfaces. Have the conversations that require a person. Act on the signals.</div>
+            <div className="hxf-edge bottom">
+              <BIcon type="human" size={28} color="var(--gold)" sw={1.5}/>
+              <div>
+                <div className="hxf-edge-label">The Frame — Human Judgment</div>
+                <div className="hxf-edge-title">Make the decisions that matter.</div>
+                <div className="hxf-edge-desc">Hiring decisions, development investments, benefits design, performance accountability, change leadership, and the high-stakes human moments a system can surface but never resolve. These decisions require context, consequence, and a level of empathy and accountability that no agent can replicate — and they are better for being made by humans who aren&apos;t buried in the work the field already handled.</div>
+              </div>
             </div>
           </div>
         </div>
@@ -603,7 +823,7 @@ export default function HXCoachHomepage() {
           </div>
           <div>
             <p className="section-sub" style={{ marginBottom: 24 }}>
-              The leave of absence journey illustrates how automation, agents, and human intervention each play their role — not as a sequence of failures and escalations, but as a deliberate design. Each layer handles what it does best.
+              The leave of absence journey illustrates The HX Frame™ in practice — each element playing its defined role. Not a sequence of failures and escalations, but a deliberate design where every touchpoint is placed with intent.
             </p>
             <p className="section-sub">
               When an employee quietly researches leave options at 11pm, an AI agent is the right answer. When they receive a serious diagnosis and need to think through scenarios, a human on your team is the only right answer.
@@ -620,7 +840,10 @@ export default function HXCoachHomepage() {
               onClick={() => setActiveStage(i)}
               style={{ cursor: "pointer" }}
             >
-              <div className={`stage-tab-badge ${s.badgeClass}`}>{s.badge}</div>
+              <div className={`stage-tab-badge ${s.badgeClass}`} style={{display:"flex",alignItems:"center",gap:6}}>
+                <BIcon type={s.id < 2 ? "aiFunction" : "human"} size={14} color={s.id < 2 ? "#3fb87a" : "#6dafd4"} sw={1.8}/>
+                {s.badge}
+              </div>
               <div className="stage-tab-title">{s.label}</div>
               <div className="stage-tab-sub">{s.sub}</div>
             </div>
@@ -686,19 +909,21 @@ export default function HXCoachHomepage() {
         <div className="section-header">
           <div className="section-eyebrow">The Engagement Model</div>
           <h2 className="section-title">How we <em>partner.</em></h2>
-          <p className="section-sub">Every engagement follows a rigorous, project-managed methodology — built for full visibility, clear accountability, and measurable results.</p>
+          <p className="section-sub">The HX Team runs every engagement on a rigorous, project-managed methodology built around The HX Frame™ — human-designed from the start, AI-optimized in the field, human-judged at every milestone.</p>
         </div>
         <div className="process-steps">
           {[
-            { num: "01", icon: "🔍", title: "Evaluate", text: "Assess the current state of your people function — systems, structure, talent, and culture." },
-            { num: "02", icon: "📊", title: "Analyze", text: "Map your HR function against your business strategy to identify alignment gaps and AI optimization opportunities." },
-            { num: "03", icon: "⚡", title: "Design", text: "Build the automation, agent, and human intervention model tailored to your workforce and your stage." },
-            { num: "04", icon: "✓", title: "Execute", text: "Drive implementation with a PM methodology that creates transparency, accountability, and momentum." },
+            { num: "01", iconType: "evaluate",   title: "Evaluate", text: "Assess the current state of your people function — systems, structure, talent, and culture." },
+            { num: "02", iconType: "results",     title: "Analyze",  text: "Map your HR function against your business strategy to identify alignment gaps and AI optimization opportunities." },
+            { num: "03", iconType: "aiFunction",  title: "Design",   text: "Build the automation, agent, and human intervention model — alongside the change management framework and multi-channel communication plan that drives genuine adoption." },
+            { num: "04", iconType: "scale",       title: "Execute",  text: "Drive implementation via Asana-based project management with real-time KPI dashboards, milestone accountability, and board-ready data outputs at every stage." },
           ].map((step) => (
             <div className="process-step" key={step.num}>
               <div className="step-circle">
                 <div className="step-num">{step.num}</div>
-                <div className="step-icon">{step.icon}</div>
+                <div className="step-icon-svg">
+                  <BIcon type={step.iconType} size={28} color="var(--gold)" sw={1.4} />
+                </div>
               </div>
               <div className="step-title">{step.title}</div>
               <p className="step-text">{step.text}</p>
@@ -706,6 +931,75 @@ export default function HXCoachHomepage() {
           ))}
         </div>
       </section>
+
+      {/* PM + CHANGE MANAGEMENT + COMMUNICATION INFRASTRUCTURE */}
+      <section className="infra">
+        <div className="infra-layout">
+          <div>
+            <div className="section-eyebrow">Operating Infrastructure</div>
+            <h2 className="section-title">You see everything.<br /><em>Your people feel it.</em></h2>
+            <p className="section-sub" style={{ marginBottom: 24 }}>
+              Three elements that most people strategies leave to chance — and that we treat as core deliverables from day one. Project management rigor makes the invisible visible. Change management makes the change stick. Internal communication makes it land.
+            </p>
+            <p className="section-sub">
+              Together they transform strategy from a document your leadership reviews into something your workforce actually experiences — on the right channel, from the right voice, at the right time.
+            </p>
+            <div className="infra-sub-note">
+              <div className="infra-sub-note-label">The Standard</div>
+              <div className="infra-sub-note-text">"Technology without change management is just expensive friction. We don&apos;t install the system and leave."</div>
+            </div>
+          </div>
+          <div className="infra-stack">
+            {/* PM Visibility */}
+            <div className="infra-card">
+              <div className="infra-card-header">
+                <BIcon type="results" size={32} color="var(--gold)" sw={1.4}/>
+                <div>
+                  <div className="infra-card-label">Project Management &amp; KPI Visibility</div>
+                  <div className="infra-card-title">Real-time dashboards. Board-ready reporting.</div>
+                </div>
+              </div>
+              <div className="infra-card-text">
+                Every engagement runs on a structured PM backbone — milestones, owner accountability, KPI dashboards, and live data outputs your leadership team can act on. No black boxes. No "trust the process." Every deliverable tracked, every result visible.
+              </div>
+              <div className="infra-tools">
+                <span className="tool-badge primary">Asana</span>
+                <span className="tool-badge">MS Project</span>
+                <span className="tool-badge">Jira</span>
+                <span className="tool-badge">Trello</span>
+                <span className="tool-badge">Your Ecosystem</span>
+              </div>
+            </div>
+            {/* Change Management */}
+            <div className="infra-card">
+              <div className="infra-card-header">
+                <BIcon type="scale" size={32} color="var(--gold)" sw={1.4}/>
+                <div>
+                  <div className="infra-card-label">Change Management</div>
+                  <div className="infra-card-title">Structured methodology. Lasting adoption.</div>
+                </div>
+              </div>
+              <div className="infra-card-text">
+                Stakeholder mapping, adoption planning, resistance navigation, phased rollout — built into the engagement design from the start, not retrofitted after something breaks. New systems and new ways of working require a deliberate change architecture. We provide it.
+              </div>
+            </div>
+            {/* Internal Communication */}
+            <div className="infra-card">
+              <div className="infra-card-header">
+                <BIcon type="human" size={32} color="var(--gold)" sw={1.4}/>
+                <div>
+                  <div className="infra-card-label">Internal Communication Strategy</div>
+                  <div className="infra-card-title">Multi-channel. Message architecture. Timed precisely.</div>
+                </div>
+              </div>
+              <div className="infra-card-text">
+                A strong history of internal communication planning means your workforce hears the right message, from the right voice, through the right channel — at exactly the right moment in the change cycle. Email, Slack, leadership town halls, manager cascade, digital signage, intranet — the channel mix is built for your organization, not a template.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
 
       {/* WHY HX */}
       <section className="why">
@@ -715,22 +1009,22 @@ export default function HXCoachHomepage() {
         </div>
         <div className="why-grid">
           <div className="why-card">
-            <span className="why-card-icon">🤖</span>
+            <div className="why-icon-block"><BIcon type="aiFunction" size={40} color="var(--gold)" sw={1.4}/></div>
             <div className="why-card-title">AI + Human — Not Either/Or</div>
-            <p className="why-card-text">We don't choose between technology and people. We build the model that uses each for what it does best — agents for information, automation for workflow, humans for judgment and high-stakes moments. The design intent behind the technology is what determines whether it works.</p>
+            <p className="why-card-text">The HX Frame™ isn't a theory — it's a proprietary operating model that places humans at both edges of every AI deployment. Agents handle information. Automation handles workflow. Humans handle judgment and high-stakes moments. The design intent behind the technology is what determines whether any of it works.</p>
             <div className="why-card-feature">Agents · Automation · Human Intervention · By Design</div>
           </div>
           <div className="why-card">
-            <span className="why-card-icon">🎯</span>
+            <div className="why-icon-block"><BIcon type="human" size={40} color="var(--gold)" sw={1.4}/></div>
             <div className="why-card-title">Personalized at Scale</div>
-            <p className="why-card-text">The talent and benefits experience shouldn't feel like it was built for a theoretical employee. We design systems that adapt to the real humans using them — delivering the right information at the right moment while preserving the personal interactions that actually move people.</p>
-            <div className="why-card-feature">Personalization · Retention · Human Experience · Scale</div>
+            <p className="why-card-text">The talent, benefits, and development experience shouldn't feel like it was built for a theoretical employee. We design systems across all three pillars that adapt to the real humans using them — delivering the right information, the right development, and the right support at the right moment.</p>
+            <div className="why-card-feature">Personalization · Development · Retention · Human Experience · Scale</div>
           </div>
           <div className="why-card">
-            <span className="why-card-icon">🧠</span>
+            <div className="why-icon-block"><BIcon type="secondSeat" size={40} color="var(--gold)" sw={1.4}/></div>
             <div className="why-card-title">C-Suite Depth, Fractional Investment</div>
-            <p className="why-card-text">You get the strategic thinking, board-ready communication, and executive credibility of a seasoned CPO — alongside the technical capability to actually build what gets designed. PE-ready frameworks, M&A-tested integration, and a coaching model that makes your team permanently stronger.</p>
-            <div className="why-card-feature">PE-Ready · M&A Expert · Board-Experienced · Coaching Embedded</div>
+            <p className="why-card-text">You get the strategic thinking and executive credibility of a seasoned CPO — backed by The HX Team: specialists in AI workflow, tech implementation, change management, and communication strategy who execute alongside the strategic lead. PE-ready frameworks, M&A-tested integration, and a coaching model that leaves your team permanently stronger.</p>
+            <div className="why-card-feature">Change Management · Multi-Channel Comms · Asana PM · Coaching Embedded</div>
           </div>
         </div>
       </section>
@@ -771,8 +1065,11 @@ export default function HXCoachHomepage() {
           </div>
           <div className="about-content">
             <div className="section-eyebrow">About</div>
-            <div className="about-name">Stacie Baird</div>
-            <div className="about-title">Founder · The HX Coach</div>
+            <div className="about-hx-mark">
+              <BIcon type="hxMark" size={36} color="var(--gold)" sw={1.3}/>
+              <div className="about-name" style={{marginBottom:0}}>Stacie Baird</div>
+            </div>
+            <div className="about-title">Founder &amp; Strategic Lead · The HX Coach</div>
             <p className="about-bio">
               Stacie Baird is a Chief People Officer and CHRO with 25+ years of executive HR leadership built inside PE-backed, multi-site, and healthcare services organizations. She has scaled workforces from <strong>40 to 3,000+ employees</strong>, led <strong>20+ M&A integrations</strong>, and partnered with CEOs and boards across every stage of the growth lifecycle.
             </p>
@@ -783,8 +1080,31 @@ export default function HXCoachHomepage() {
               Most recently, she partnered with a <strong>PE-backed distributed healthcare organization</strong> to double in size — internalizing and optimizing the talent function to achieve an <strong>86% reduction in cost-per-hire</strong>, migrating to a self-funded benefits platform that delivered <strong>21% savings on benefits spend</strong>, and integrating wellbeing into a micro-learning leadership development model that reduced overall turnover and measurably expanded the internal leadership talent pool.
             </p>
             <p className="about-bio">
-              With a deep conviction that <strong>AI is not a threat to great HR professionals — it's a force multiplier for them</strong>, Stacie builds engagements around two pillars: the <strong>Talent Engine</strong> and <strong>Benefits & Wellbeing by Design</strong>. <strong>Certified Trauma & Resilience Coach</strong> and host of <strong>The HX Podcast Season 6</strong>.
+              With a deep conviction that <strong>AI is not a threat to great HR professionals — it's a force multiplier for them</strong>, Stacie leads The HX Team in building engagements around three pillars: the <strong>Talent Engine</strong>, <strong>Benefits &amp; Wellbeing by Design</strong>, and <strong>The Leadership Pipeline</strong>. <strong>Certified Trauma & Resilience Coach</strong> and host of <strong>The HX Podcast Season 6</strong>.
             </p>
+            <div className="team-callout">
+              <div className="team-callout-label">The HX Team</div>
+              <div className="team-callout-headline">The strategy is Stacie&apos;s.<br />The execution is a team sport.</div>
+              <div className="team-callout-sub">Every engagement deploys a curated combination of specialists alongside the strategic lead — so the scope of what&apos;s promised is precisely matched by the depth of who delivers it.</div>
+              <div className="team-role-grid">
+                {[
+                  { ic: "aiFunction",   title: "AI Workflow & Agents",       desc: "AI-enabled workflow design, agent deployment, and automation architecture" },
+                  { ic: "evaluate",     title: "Tech Implementation",         desc: "HR tech stack integration, system optimization, and platform migration" },
+                  { ic: "scale",        title: "Change Management",           desc: "Structured adoption methodology, stakeholder mapping, and phased rollout" },
+                  { ic: "human",        title: "Internal Communications",     desc: "Multi-channel strategy, message architecture, and leadership alignment" },
+                  { ic: "results",      title: "PM & Analytics",              desc: "Asana-based project tracking, KPI dashboards, and board-ready reporting" },
+                  { ic: "talentEngine", title: "Talent & Benefits Design",    desc: "Specialist execution across talent acquisition, compensation, and benefits" },
+                ].map(r => (
+                  <div className="team-role-card" key={r.title}>
+                    <BIcon type={r.ic} size={20} color="var(--gold)" sw={1.4}/>
+                    <div>
+                      <div className="team-role-title">{r.title}</div>
+                      <div className="team-role-desc">{r.desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
             <div className="about-creds">
               {["Trauma & Resilience Coach", "M&A Integration", "PE-Backed Orgs", "Multi-State HR · 42 States", "Fortune 50 · CVS/Caremark", "Self-Funded Benefits", "AI + HR Strategy", "Healthcare & Behavioral Health", "B.S. Chemistry · Butler"].map((c) => (
                 <div className="cred-tag" key={c}>{c}</div>
@@ -806,9 +1126,9 @@ export default function HXCoachHomepage() {
         <div className="footer-cta-content">
           <div className="footer-cta-eyebrow">Let's Talk</div>
           <h2 className="footer-cta-title">Ready to build the people function<br /><em>your business actually needs?</em></h2>
-          <p className="footer-cta-sub">Start with a 30-minute discovery call. No pitch — just an honest conversation about where you are, where you're going, and whether this is the right model to get you there.</p>
+          <p className="footer-cta-sub">Start with a 30-minute discovery call with Stacie and The HX Team. No pitch — just an honest conversation about where you are, where you&apos;re going, and whether this is the right model to get you there.</p>
           <div className="footer-cta-btns">
-           <button className="btn-primary" onClick={() => window.open('https://calendly.com/YOUR_LINK', '_blank')}>Book a Discovery Call</button>
+            <button className="btn-primary">Book a Discovery Call</button>
             <button className="btn-ghost">Explore the Podcast</button>
           </div>
         </div>
