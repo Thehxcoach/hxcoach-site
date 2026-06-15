@@ -521,9 +521,9 @@ export default function HXCoachClean() {
         <div className="hero-left">
           <div className="hero-eyebrow">CPO-Level Strategy · The HX Team · AI + Tech Integration</div>
           <h1 className="hero-hl">
-            You don&apos;t need<br/>a chief in the seat.<br/><em>You need a partner<br/>who builds you one.</em>
+            Build the people<br/>function your business<br/><em>actually needs.</em>
           </h1>
-          <p className="hero-sub">You&apos;re growing, changing, maybe about to sell. You need a chief who builds people strategy around business strategy — without the full-time cost or the wrong person in the seat. I build it, install the systems, and hand you the keys.</p>
+          <p className="hero-sub">CPO-level people strategy for companies navigating growth, change, and complexity — without the full-time hire.</p>
           <div className="hero-btns">
             <button className="btn-primary" onClick={() => window.open(CALENDLY,"_blank")}>Book a Discovery Call</button>
             <button className="btn-ghost" onClick={() => document.getElementById("frame").scrollIntoView({behavior:"smooth"})}>See The Model</button>
@@ -847,7 +847,7 @@ export default function HXCoachClean() {
           <li><a href="#pricing">Pricing</a></li>
           <li><a href="#about">About</a></li>
         </ul>
-        <div className="footer-copy">© 2026 The HX Coach · hxcoach.com</div>
+        <div className="footer-copy">Open to select full-time leadership roles · <a href={CALENDLY} target="_blank" rel="noopener noreferrer" style={{color:"var(--gold)",textDecoration:"none"}}>Let&apos;s talk</a><br/>© 2026 The HX Coach · hxcoach.com</div>
       </footer>
     </div>
   );
