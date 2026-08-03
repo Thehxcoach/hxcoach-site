@@ -511,6 +511,7 @@ export default function HXCoachClean() {
           <li><a href="#results">Results</a></li>
           <li><a href="#pricing">Pricing</a></li>
           <li><a href="#about">About</a></li>
+          <li><a href="#/hr">For HR Leaders</a></li>
         </ul>
         <button className="nav-cta" onClick={() => window.open(CALENDLY,"_blank")}>Book a Call</button>
       </nav>
