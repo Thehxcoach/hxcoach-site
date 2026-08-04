@@ -61,7 +61,7 @@ const SESSIONS = [
 const TOPICS = [
   "Your first 90 days in a seat, now what?",
   "Building the business case your CFO will support",
-  "Running a team through a major change or transition",
+  "Running a team through a transition",
   "Where AI belongs, and where does not",
   "Managing up to a CEO who thinks HR is tactical",
   "The succession conversation the board wants",
