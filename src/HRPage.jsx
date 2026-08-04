@@ -14,10 +14,10 @@ import React, { useEffect, useRef } from "react";
 const FREE_CALL = "https://calendly.com/staciebaird/30min";
 
 const LINKS = {
-  intro:      FREE_CALL,                                  // TODO: 15 minute free event
-  aLaCarte:   "https://calendly.com/staciebaird/30min",   // TODO: paid 45 minute event
+  intro:      "https://calendly.com/staciebaird/free-coaching-introduction",                                  // TODO: 15 minute free event
+  aLaCarte:   "https://calendly.com/staciebaird/single-coaching-session",   // TODO: paid 45 minute event
   inYourCorner: "https://calendly.com/staciebaird/30min", // TODO: Calendly meeting package, 3 sessions
-  podcast:    "#",                                        // TODO: podcast landing URL
+  podcast:    "https://staciebaird.com/podcast",                                        // TODO: podcast landing URL
   test4trust: "https://leadwithtrust.com",                // TODO: direct Test4Trust URL
 };
 
