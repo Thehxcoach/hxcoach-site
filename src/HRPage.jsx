@@ -219,7 +219,8 @@ export default function HRPage() {
           text-transform:uppercase;color:var(--gold);margin-bottom:18px;
         }
         .hrx-h2{
-          font-family:'Cormorant Garamond',serif;font-weight:400;
+          text-align:center;
+        font-family:'Cormorant Garamond',serif;font-weight:400;
           font-size:clamp(30px,4vw,44px);line-height:1.15;color:var(--navy);
           margin:0 0 18px;letter-spacing:-0.01em;
         }
@@ -248,7 +249,8 @@ export default function HRPage() {
         /* ---- hero ---- */
         .hrx-hero{padding:96px 0 78px;}
         .hrx-hero h1{
-          font-family:'Cormorant Garamond',serif;font-weight:300;
+          text-align:center;
+        font-family:'Cormorant Garamond',serif;font-weight:300;
           font-size:clamp(40px,6.4vw,72px);line-height:1.06;color:var(--navy);
           margin:0 0 26px;letter-spacing:-0.02em;max-width:15ch;
         }
